@@ -1,0 +1,31 @@
+.food-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 20px;
+  padding: 0 2rem;
+  width: 100%;
+  margin: 0.5rem 0;
+  box-shadow: 1px 2px 20px 3px rgb(0 0 0 / 50%);
+  height: max-content;
+  cursor: pointer;
+}
+
+.food-item__img {
+  width: 8rem;
+  height: 8rem;
+}
+
+.food-item__details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+  align-items: flex-start;
+  width: 35%;
+}
+
+.food-item__details-item {
+  margin: 0;
+}
