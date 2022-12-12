@@ -9,6 +9,14 @@ const cartSchema = new mongoose.Schema({
     type: [{ name: String, quantity: Number }],
     require: true,
   },
+  name: {
+    type: String,
+    require: true
+  },
+  phone: {
+    type: String,
+    require: true
+  }
 });
 
 const Cart = mongoose.model("Cart", cartSchema);

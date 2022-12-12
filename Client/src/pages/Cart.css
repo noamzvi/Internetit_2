@@ -43,3 +43,54 @@
   background-color: #ca84e3;
   filter: brightness(0.8);
 }
+
+.popup__close-button {
+  background-color: rgb(0 0 0 / 78%);
+  border-radius: 8px;
+  border-style: none;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  height: 40px;
+  line-height: 20px;
+  margin: 0;
+  padding: 10px 16px;
+  text-align: center;
+}
+
+.popup__close-button:hover,
+.popup__close-button:focus {
+  background-color: rgb(0 0 0 / 78%);
+  filter: brightness(0.5);
+}
+
+.popup__img {
+  width: 18rem;
+  height: 18rem;
+}
+
+.popup__content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+}
+
+.popup__details {
+  display: flex;
+  flex-direction: column;
+}
+
+.popup__info {
+  font-size: 18px;
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.popup__input {
+  width: 40%;
+}
