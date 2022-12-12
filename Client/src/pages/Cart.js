@@ -21,7 +21,6 @@ function Cart() {
     console.log("save cart");
     axios
       .post("http://localhost:5001/cart", {
-        customerName: "Shir",
         totalPrice: getTotalAmount(),
         products: cart.map((item) => {
           return { name: item.name, quantity: item.quantity };
@@ -34,6 +33,7 @@ function Cart() {
       })
       .catch((err) => {
         console.log(err);
+        alert("error in saving cart");
       });
   };
 
