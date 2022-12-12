@@ -1,9 +1,5 @@
 const mongoose = require("mongoose");
 const cartSchema = new mongoose.Schema({
-  customerName: {
-    type: String,
-    require: true,
-  },
   totalPrice: {
     type: Number,
     require: true,
