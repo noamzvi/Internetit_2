@@ -39,7 +39,8 @@
   min-width: max-content;
 }
 
-.action-button:hover {
+.action-button:hover,
+.action-button:disabled {
   background-color: #ca84e3;
   filter: brightness(0.8);
 }
@@ -65,20 +66,7 @@
   filter: brightness(0.5);
 }
 
-.popup__img {
-  width: 18rem;
-  height: 18rem;
-}
-
 .popup__content {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 1.5rem;
-}
-
-.popup__details {
   display: flex;
   flex-direction: column;
 }

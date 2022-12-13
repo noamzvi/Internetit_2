@@ -23,7 +23,8 @@ function Cart() {
   const [showPopup, setShowPopup] = useState(false);
   const [personDet, setPersonDet] = useState({});
 
-  const saveCart = () => {
+  const saveCart = (event) => {
+    event.preventDefault();
     axios
       .post("http://localhost:5001/cart", {
         totalPrice: getTotalAmount(),
@@ -31,13 +32,14 @@ function Cart() {
           return { name: item.name, quantity: item.quantity };
         }),
         name: personDet.name,
-        phone: personDet.phone
+        phone: personDet.phone,
       })
       .then((res) => {
         alert("cart saved succesfully");
         setShowPopup(false);
         clearCart();
         navigate("/");
+        console.log("cart saved succesfully");
       })
       .catch((err) => {
         console.log(err);
@@ -79,7 +81,12 @@ function Cart() {
       </div>
       <h3>Total Amount: {getTotalAmount()} $</h3>
       <div className="cart-buttons-container">
-        <button className="action-button" onClick={() => setShowPopup(true)}>
+        <button
+          disabled={cart.length === 0}
+          style={{ cursor: cart.length === 0 ? "default" : "pointer" }}
+          className="action-button"
+          onClick={() => setShowPopup(true)}
+        >
           Save cart
         </button>
         <button
@@ -91,39 +98,67 @@ function Cart() {
           Add more products
         </button>
       </div>
+
       <Dialog open={showPopup}>
-        <DialogTitle
-          sx={{
-            alignSelf: "center",
-            "&.MuiDialogTitle-root": {
-              fontSize: "1.5rem",
-              fontWeight: "600",
-            },
-          }}
-        >
-          Just a few last details...
-        </DialogTitle>
-        <DialogContent>
-          <div className="popup__content">
-            <div className="popup__details">
+        <form onSubmit={saveCart}>
+          <DialogTitle
+            sx={{
+              alignSelf: "center",
+              "&.MuiDialogTitle-root": {
+                fontSize: "1.5rem",
+                fontWeight: "600",
+              },
+            }}
+          >
+            Just a few last details...
+          </DialogTitle>
+          <DialogContent>
+            <div className="popup__content">
               <p className="popup__info">
                 <b>Your name:</b>
-                <input className="popup__input"
-                  onChange={(e) => setPersonDet(prev => { return { ...prev, name: e.target.value } })} />
+                <input
+                  required
+                  className="popup__input"
+                  onChange={(e) =>
+                    setPersonDet((prev) => {
+                      return { ...prev, name: e.target.value };
+                    })
+                  }
+                />
               </p>
               <p className="popup__info">
                 <b>Your phone number:</b>
-                <input className="popup__input"
-                  onChange={(e) => setPersonDet(prev => { return { ...prev, phone: e.target.value } })} />
+                <input
+                  required
+                  className="popup__input"
+                  onChange={(e) =>
+                    setPersonDet((prev) => {
+                      return { ...prev, phone: e.target.value };
+                    })
+                  }
+                />
               </p>
             </div>
-          </div>
-        </DialogContent>
-        <DialogActions>
-          <button className="popup__close-button" onClick={saveCart}>
-            Save
-          </button>
-        </DialogActions>
+          </DialogContent>
+          <DialogActions>
+            <button
+              type="submit"
+              className="popup__close-button"
+              // onClick={saveCart}
+            >
+              Save
+            </button>
+            <button
+              className="popup__close-button"
+              onClick={(e) => {
+                e.preventDefault();
+                setShowPopup(false);
+              }}
+            >
+              Cancel
+            </button>
+          </DialogActions>
+        </form>
       </Dialog>
     </div>
   );
